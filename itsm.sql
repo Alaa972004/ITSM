@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.3.0-dev+20220501.46b7525c53
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 12:24 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.5
+-- Generation Time: May 08, 2026 at 11:22 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `compliants` (
   `subject` varchar(30) DEFAULT NULL,
   `message` varchar(160) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `compliants`
@@ -56,7 +56,7 @@ CREATE TABLE `rate` (
   `company` varchar(30) DEFAULT NULL,
   `service` varchar(30) NOT NULL,
   `star` int(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rate`
@@ -78,7 +78,7 @@ CREATE TABLE `reports` (
   `t_id` int(6) DEFAULT NULL,
   `details` varchar(160) DEFAULT NULL,
   `file` varchar(160) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reports`
@@ -103,7 +103,7 @@ CREATE TABLE `tasks` (
   `service` varchar(30) DEFAULT NULL,
   `info` varchar(160) DEFAULT NULL,
   `t_st` int(2) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tasks`
@@ -133,7 +133,7 @@ CREATE TABLE `tickets` (
   `info` varchar(160) DEFAULT NULL,
   `t_status` int(1) DEFAULT NULL,
   `ticket_code` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tickets`
@@ -161,22 +161,22 @@ CREATE TABLE `users` (
   `u_role` int(2) DEFAULT NULL,
   `username` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `user_password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `u_role`, `username`, `email`, `user_password`) VALUES
-(1, 70, 'admin', 'admin@gmail.com', 'admin'),
-(2, 80, 'Hamza Damra', 'hamza@gmail.com', '123'),
-(3, 80, 'Bashar Al Haj', 'bashar@gmail.com', '123'),
-(4, 90, 'lotfi', 'lotfi@yahoo.com', '123'),
-(5, 90, 'Bashar', 'Bashar@yahoo.com', '321'),
-(6, 90, 'Hamed', 'hamed@yahoo.com', '321'),
-(7, 90, 'Tamer', 'tamer@yahoo.com', '321'),
-(11, 90, 'Ahmad Samer', 'ahmad_samer@yahoo.com', 'ahmad18');
+(35, 70, 'admin', 'adminatat@gmail.com', '$2y$10$qL6S2FNUXFmmSb6wSJ/kge2E4ut31Pjbk0MUNnw1ubqKwY28tuxoe'),
+(36, 80, 'alaa', 'alaa@gmail.com', '$2y$10$ZFSlj3cAaZ.Pq1N5pUvT5.A/sBq8qq.x5YJqgnHESrBJ3VwJg7EKS'),
+(37, 80, 'tala', 'tala@gmail.com', '$2y$10$F3AE3sNjmYZzft.CO7LgPu2nfxpnjpsGz4NiYzB7CZoMlZ8RLJWvq'),
+(38, 80, 'aliaa', 'aliaa@gmail.com', '$2y$10$E3F1O2O4UMTwvpWJ/4otduiWMp9bf5ZSE4Bjz1exb.A8WPHoZvTrO'),
+(39, 90, 'meu', 'meu@gmail.com', '$2y$10$hGsmJD9Jajf.GcsmUjTyC.DtFnyzQBD6DGkENKZEqYAnG5i5YNena'),
+(40, 90, 'ahmad', 'ahmad@yahoo.com', '$2y$10$Lrq.zrhFn9EM7Fj8fa98Ged29SR61Za5m.5b.0tlIRj//GFJ6ZHme'),
+(41, 90, 'ali', 'ali@yahoo.com', '$2y$10$tC2fjnXcmYwtJtKOBMOYduaDDWyCPdMvKMyT/uG3tsy622eD4nhsu'),
+(42, 90, 'malak', 'malak@yahoo.com', '$2y$10$XvVQ0wnDgA.TTTv6uZ2PLeAKGSu4ySZseZ4.dPxpidtf5AxabnUl.');
 
 --
 -- Indexes for dumped tables
@@ -258,12 +258,9 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
