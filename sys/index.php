@@ -178,7 +178,7 @@
 						<li><a href="contact.php">contact</a></li>
 						<li><a href="jobrequest.php">Requst service</a></li> <br /> <br />
 					
-						<p align='center'>© Copyright 2022 Advanced IT Service Management . Hamza Damra - Bashar Al-haj. All Rights Reserved.</p>
+						<p align='center'>© Copyright 2022 Advanced IT Service Management . Alaa - Tala - Aliaa - Tala . All Rights Reserved.</p>
 					</ul>
 		   	</div>
 

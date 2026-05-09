@@ -2,11 +2,7 @@
 
 Class Connection {
 
-<<<<<<< HEAD
 private $host = "localhost";
-=======
-private $host = "localhost:8111";
->>>>>>> 0f6525af960500fcc2486423c846eeabd7e1196d
 private $user = "root";
 private $pass = '';
 private $dbname = "itsm";
