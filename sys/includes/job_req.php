@@ -34,6 +34,10 @@ if(strlen($cname) < 2 || strlen($cname) > 50){
 if(strlen($subject) < 10 || strlen($subject) > 300){
     die("Subject must be between 10 and 300 characters");
 }
+// Prevent malicious scripts
+if(!preg_match('/^[a-zA-Z0-9 .,!?-]+$/', $subject)){
+    die("Invalid characters detected");
+}
 
 // Phone number length
 if(strlen($phone) < 10 || strlen($phone) > 15){
