@@ -1,6 +1,5 @@
 <?php 
 
-<<<<<<< HEAD
 if (isset($_POST['submit_t'])) {
 
 include "../classes/dbc.classes.php"; 
@@ -14,6 +13,7 @@ $phone = trim($_POST['phone']);
 $service = $_POST['service'];
 $location = $_POST['location'];
 $subject = trim($_POST['subject']);
+
 $random_id = "TCK-" . strtoupper(substr(md5(uniqid()), 0, 8));
 
 /* =========================
@@ -90,29 +90,6 @@ Null,
 
 $st->execute(array(
 
-=======
-
-if (isset($_POST['submit_t'])) {
-include "../classes/dbc.classes.php"; 
-
-  // Grabing the data
-  $fname = $_POST['fname'];
-  $cname = $_POST['cname'];
-  $email = $_POST['email'];
-  $phone = $_POST['phone'];
-  $service = $_POST['service'];
-  $location = $_POST['location'];
-  $subject = $_POST['subject'];
-  $random_id = $_POST['random_id'];
-
-}
-
-
-$submit_ticket = new Connection();
-
-  $st = $submit_ticket->openConnection()->prepare("insert into tickets values(Null,:fname,:cname,:email,:phone,:service,:location,:subject,0,:random_id)");
-  $st->execute(array(
->>>>>>> 7fd54827e2dd855f485b9c0cf05fbe1a06e6c5d8
     ':fname' => $fname,
     ':cname' => $cname,
     ':email' => $email,
@@ -121,7 +98,6 @@ $submit_ticket = new Connection();
     ':location' => $location,
     ':subject' => $subject,
     ':random_id' => $random_id
-<<<<<<< HEAD
 
 ));
 
@@ -140,13 +116,3 @@ exit();
 }
 
 ?>
-```
-=======
-));
-
-header("Location:../jobrequest.php?Requsest_recived_successfully");
-
-
-
- ?>
->>>>>>> 7fd54827e2dd855f485b9c0cf05fbe1a06e6c5d8
