@@ -1,0 +1,215 @@
+<?php
+session_start();
+
+if(empty($_SESSION['csrf_token'])){
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+
+
+
+
+<?php if(isset($_SESSION['uname']) && $_SESSION['role'] == 90): ?>
+
+    <?php 
+
+ include_once '../classes/dbc.classes.php';
+
+$database = new Connection();
+  $query = "SELECT * FROM tickets";
+$stmt = $db->query($query);
+$row_count = $stmt->rowCount();
+ ?>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">ITSM</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="Tasks.php" >
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Tasks</span>
+          </a>
+        </li>
+          <li>
+          <a href="under processing.php">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name"> under processing</span>
+          </a>
+        </li>
+        <li>
+          <a href="completed.php">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">completed</span>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a href="team.php">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Team</span>
+          </a>
+        </li>
+        <li>
+          <a href="Setting.php" class="active">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="../includes/logout.inc.php">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Setting</span>
+      </div>
+      <!-- <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <i class='bx bx-search' ></i>
+      </div> -->
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+                         <i class='fa fa-user-circle-o' aria-hidden="true"></i>
+                                 <span class="admin_name" >Welcome Back !</span>
+
+        <span class="admin_name" style="color:#fe3f40"><?php echo "&nbsp".htmlspecialchars($_SESSION['uname'], ENT_QUOTES, 'UTF-8')."&nbsp"; ?></span>
+
+
+<!--         <i class='bx bx-chevron-down' ></i>
+ -->      </div>
+    </nav>
+   <!-- start form -->
+
+
+
+<br>
+<br>
+<br>
+<br>
+    <?php 
+
+ include_once '../classes/dbc.classes.php';
+$user = $_SESSION['u_id'];
+$database = new Connection();
+  $db = $database->openConnection();
+ $stmt = $db->prepare("SELECT * FROM users WHERE id = :id");
+$stmt->bindParam(':id', $user, PDO::PARAM_INT);
+$stmt->execute();
+ ?>
+ <?php
+ $sn=1;
+$data = $stmt->fetch(PDO::FETCH_ASSOC);
+   
+   ?>
+<div>
+
+      
+
+  <form class="operation_form" method="POST" action="../includes/update_setting.php">
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <span><h2 class='set'>General Account Settings</h2></span><br>
+    <h4>Your ID is :</h4>
+        <h4 class="par"><?php echo (int)$data['id']; ?>  </h4>
+    <br>
+    <label for="fname"><b>Full Name</b></label>
+    <input class="set" type="text" id="fname" name="fname" placeholder='<?php echo "Your Current Name is :".htmlspecialchars($data['username'], ENT_QUOTES, 'UTF-8'); ?>'>
+
+    <label for="lname"><b>E-mail</b></label>
+    <input class="set" type="email" id="lname" name="email" placeholder="<?php echo "Your Current Email Is :".htmlspecialchars($data['email'], ENT_QUOTES, 'UTF-8'); ?>" required>
+
+    <label for="lname"><b>Enter A New Password</b></label>
+    <input class="set" type="password" id="lname" name="new_password" onChange="onChange()" placeholder="Enter your New Password..." required>
+
+
+    <label for="lname"><b>Confirm Password</b></label>
+    <input class="set" type="password" id="lname" name="new_password_re"  onChange="onChange()" placeholder="Re-enter your New Password..." required>
+
+    <input class="input2" type="submit" value="Update" name='update_set'>
+    <input class="input2" type="reset" value="cancel">
+  </form>
+</div>
+
+ 
+   
+                         
+
+    <br>
+
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
+
+
+
+<?php else : ?>
+
+
+
+
+<center><h1> You Must Login first</h1></center>
+
+
+
+<?php endif; ?>
+
+<!-- script -->
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
+<!-- Password matchin script -->
+<script>
+  
+function onChange() {
+  const password = document.querySelector('input[name=new_password]');
+  const confirm = document.querySelector('input[name=new_password_re]');
+  if (confirm.value === password.value) {
+    confirm.setCustomValidity('');
+  } else {
+    confirm.setCustomValidity('Passwords do not match');
+  }
+}
+
+</script>
+<!-- Password matchin script -->
+
+<!-- script end-->
+</body>
+</html>
